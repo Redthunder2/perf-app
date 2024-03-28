@@ -1,0 +1,133 @@
+﻿@model perfumeApp.Models.Ticket
+@{
+    ViewBag.Title = "ShortCreate";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    //hidden values:
+    <input type="text" id="user" name="User" value="@User.Identity.Name" />
+    <input type="text" id="Duration" name="Ticket_Duration" value="short" hidden />
+    //<input type="text" id="cost" name="" />
+
+    @Html.DisplayNameFor(x => x.Unit_Number)
+    { if (ViewBag.units == null) { ViewBag.units = new SelectList(new perfumeApp.Models.ParkingAppEntities().ParkingUnits, "Unit_Number", "Unit_Number"); } }
+    @Html.DropDownListFor(x => x.Unit_Number, (SelectList)ViewBag.units, "select", new { @class = "form-control" })
+    @Html.DisplayName("Date")
+    <input class="form-control" type="date" id="Start_Time" name="Start_Time" />
+    @Html.DisplayName("start Time")
+    <input class="form-control" type="time" id="begTime" name="begTime" />
+    @Html.DisplayNameFor(x => x.End_Time)
+    <input class="form-control" type="text" name="End_Time" id="End_Time" readonly />
+    @Html.DisplayName("Duration")
+    <select class="form-control" name="length" id="length">
+        <option value="15">15 minutes</option>
+        <option value="30">30 minutes</option>
+        <option value="45">45 minutes</option>
+        <option value="60">1 hour</option>
+        <option value="75">75 minutes</option>
+        <option value="90">90 minutes</option>
+        <option value="105">105 minutes</option>
+        <option value="120">2 hours</option>
+        <option value="180">3 hours</option>
+        <option value="240">4 hours</option>
+        <option value="300">5 hours</option>
+        <option value="720">full day</option>
+    </select>
+
+    @Html.DisplayNameFor(x => x.cost)
+    @Html.EditorFor(x => x.cost, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+    @Html.DisplayNameFor(x => x.Vehicle_Reg)
+    @Html.EditorFor(x => x.Vehicle_Reg, new { htmlAttributes = new { @class = "form-control" } })
+
+    <input type="submit" value="submit" />
+}
+
+
+
+@section scripts{
+    <script>
+        const body = document.querySelector("body");
+        const cost = document.querySelector("#cost");
+        const date = document.querySelector("#Start_Time");
+        const end = document.querySelector("#End_Time");
+        const length = document.querySelector("#length");
+        let startTime;
+        let endTime;
+
+        const calcCost = () => {
+            if (startTime && endTime) {
+                if (endTime > startTime) {
+                    cost.value = length.value / 3;
+                    console.log("end: " + endTime + " start: " + startTime)
+                }
+            }
+        }
+
+        function setDay() {
+            if (date.value) {
+                startTime = new Date(date.value);
+            }
+        }
+
+        function setTime() {
+            if (startTime) {
+                if (begTime.value) {
+                    let arr = begTime.value.split(':');
+                    startTime.setHours(arr[0]);
+                    startTime.setMinutes(arr[1])
+                    console.log(startTime)
+                }
+            }
+        }
+
+        length.addEventListener("click", () => {
+            if (startTime) {
+                let t = startTime.getTime();
+                let a = length.value * 60 * 1000;
+                endTime = new Date(t + a);
+                end.value = endTime.toLocaleTimeString();
+                console.log(new Date(t + a));
+            }
+        })
+
+        date.addEventListener("click", () => {
+            setDay();
+            setTime();
+            calcCost();
+        })
+
+        date.addEventListener("mousein", () => {
+            setDay();
+            setTime();
+            calcCost();
+        })
+
+        date.addEventListener("mouseout", () => {
+            setDay();
+            setTime();
+            calcCost();
+        })
+
+        end.addEventListener("click", () => {
+            setDay();
+            setTime();
+            calcCost();
+        })
+
+        end.addEventListener("mouseout", () => {
+            setDay();
+            setTime();
+            calcCost();
+        })
+
+        cost.addEventListener("click", () => {
+            setDay();
+            setTime();
+            calcCost();
+        })
+
+    </script>
+
+}

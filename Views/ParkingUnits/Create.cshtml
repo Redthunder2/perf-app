@@ -1,0 +1,17 @@
+﻿@model perfumeApp.Models.ParkingUnit
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@Html.ActionLink("Go back", "Index", new { @area = "" }, new { @class = "btn btn-secondary px-3   " })
+@using (Html.BeginForm("Create", "ParkingUnits", FormMethod.Post))
+{
+
+    @Html.DisplayNameFor(x => x.ParkingSpace_Name)
+    { if (ViewBag.spaces == null) { ViewBag.spaces = new SelectList(new perfumeApp.Models.ParkingAppEntities().ParkingSpaces, "ParkingSpace_Name", "ParkingSpace_Name"); } }
+    @Html.DropDownListFor(x => x.ParkingSpace_Name, (SelectList)ViewBag.spaces, "select", new { @class = "form-control" })
+ 
+    <p></p>
+    <input class="form-control btn btn-success" type="submit" />
+}

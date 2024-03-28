@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ParkingAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ParkingSpaces">
+    <Key>
+      <PropertyRef Name="ParkingSpace_Name" />
+    </Key>
+    <Property Name="ParkingSpace_Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Max_Capacity" Type="int" Nullable="false" />
+    <Property Name="Current_Capacity" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ParkingUnits">
+    <Key>
+      <PropertyRef Name="Unit_Number" />
+    </Key>
+    <Property Name="Unit_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Avalilability" Type="bit" Nullable="false" />
+    <Property Name="ParkingSpace_Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tickets">
+    <Key>
+      <PropertyRef Name="Ticket_Number" />
+    </Key>
+    <Property Name="Ticket_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vehicle_Reg" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cost" Type="int" Nullable="false" />
+    <Property Name="Start_Time" Type="datetime" Nullable="false" />
+    <Property Name="End_Time" Type="datetime" Nullable="false" />
+    <Property Name="Ticket_Duration" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Unit_Number" Type="int" Nullable="false" />
+    <Property Name="User" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_dbo_ParkingUnits_dbo_ParkingSpaces_ParkingSpace_Name">
+    <End Role="ParkingSpaces" Type="Self.ParkingSpaces" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ParkingUnits" Type="Self.ParkingUnits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ParkingSpaces">
+        <PropertyRef Name="ParkingSpace_Name" />
+      </Principal>
+      <Dependent Role="ParkingUnits">
+        <PropertyRef Name="ParkingSpace_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Tickets_dbo_ParkingUnits_Unit_Number">
+    <End Role="ParkingUnits" Type="Self.ParkingUnits" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ParkingUnits">
+        <PropertyRef Name="Unit_Number" />
+      </Principal>
+      <Dependent Role="Tickets">
+        <PropertyRef Name="Unit_Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ParkingAppModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ParkingSpaces" EntityType="Self.ParkingSpaces" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ParkingUnits" EntityType="Self.ParkingUnits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_ParkingUnits_dbo_ParkingSpaces_ParkingSpace_Name" Association="Self.FK_dbo_ParkingUnits_dbo_ParkingSpaces_ParkingSpace_Name">
+      <End Role="ParkingSpaces" EntitySet="ParkingSpaces" />
+      <End Role="ParkingUnits" EntitySet="ParkingUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Tickets_dbo_ParkingUnits_Unit_Number" Association="Self.FK_dbo_Tickets_dbo_ParkingUnits_Unit_Number">
+      <End Role="ParkingUnits" EntitySet="ParkingUnits" />
+      <End Role="Tickets" EntitySet="Tickets" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

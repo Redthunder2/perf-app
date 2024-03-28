@@ -1,0 +1,39 @@
+﻿@model perfumeApp.Models.ParkingSpace
+@{
+    ViewBag.Title = "Create";
+}
+
+@{
+    if (ViewBag.error != null)
+    {
+        <h3 class="text-danger">@ViewBag.error</h3>
+    }
+}
+
+<h2>Add Space to DATABASE</h2>
+
+@Html.ActionLink("Go back","Index", new {@area=""},new {@class= "btn btn-secondary px-3   " })
+
+@using (Html.BeginForm("Create", "ParkingSpaces", FormMethod.Post))
+{
+
+    <span class=" form-label">@Html.DisplayNameFor(m => m.ParkingSpace_Name)</span>
+    @Html.EditorFor(m => m.ParkingSpace_Name, new { htmlAttributes = new { @class = "form-control" } })
+    <p class="text-danger">@Html.ValidationMessageFor(m => m.ParkingSpace_Name)</p>
+    <span class="form-label">@Html.DisplayNameFor(m => m.ParkingSpace_Name)</span>
+    @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control" } })
+    <p class="text-danger">@Html.ValidationMessageFor(m => m.Address)</p>
+    <span>@Html.DisplayNameFor(m => m.Current_Capacity)</span>
+    @Html.EditorFor(m => m.Current_Capacity, new { htmlAttributes = new { @class = "form-control" } })
+    <p class="text-danger">@Html.ValidationMessageFor(m => m.Current_Capacity)</p>
+    <span>@Html.DisplayNameFor(m => m.Max_Capacity)</span>
+    @Html.EditorFor(m => m.Max_Capacity, new { htmlAttributes = new { @class = "form-control" } })
+    <p class="text-danger">@Html.ValidationMessageFor(m => m.Max_Capacity)</p>
+
+    <input class="btn btn-success form-control mt-3" type="submit" value="Submit" />
+    <p></p>
+    
+
+    
+    
+}
