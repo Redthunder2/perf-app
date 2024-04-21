@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ParkingAppModelStoreContainer" CdmEntityContainer="ParkingAppEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="ParkingAppModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParkingSpaces">
+      <EntityTypeMapping TypeName="ParkingAppModel.ParkingSpace">
+        <MappingFragment StoreEntitySet="ParkingSpaces">
+          <ScalarProperty Name="ParkingSpace_Name" ColumnName="ParkingSpace_Name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Max_Capacity" ColumnName="Max_Capacity" />
+          <ScalarProperty Name="Current_Capacity" ColumnName="Current_Capacity" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParkingUnits">
+      <EntityTypeMapping TypeName="ParkingAppModel.ParkingUnit">
+        <MappingFragment StoreEntitySet="ParkingUnits">
+          <ScalarProperty Name="Unit_Number" ColumnName="Unit_Number" />
+          <ScalarProperty Name="Avalilability" ColumnName="Avalilability" />
+          <ScalarProperty Name="ParkingSpace_Name" ColumnName="ParkingSpace_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="ParkingAppModel.Ticket">
+        <MappingFragment StoreEntitySet="Tickets">
+          <ScalarProperty Name="Ticket_Number" ColumnName="Ticket_Number" />
+          <ScalarProperty Name="Vehicle_Reg" ColumnName="Vehicle_Reg" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+          <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+          <ScalarProperty Name="Ticket_Duration" ColumnName="Ticket_Duration" />
+          <ScalarProperty Name="Unit_Number" ColumnName="Unit_Number" />
+          <ScalarProperty Name="User" ColumnName="User" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -403,6 +403,13 @@ namespace perfumeApp.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Userslist()
+        {
+           
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

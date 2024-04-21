@@ -1,0 +1,29 @@
+﻿@model IEnumerable<perfumeApp.Models.Ticket>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Tickets:</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <td>@Html.DisplayNameFor(x => x.Ticket_Number)</td>
+        <td>@Html.DisplayNameFor(x => x.Unit_Number)</td>
+        <td>@Html.DisplayNameFor(x => x.Vehicle_Reg)</td>
+        <td>@Html.DisplayNameFor(x => x.Start_Time)</td>
+        <td>@Html.DisplayNameFor(x => x.End_Time)</td>
+        <td>@Html.DisplayNameFor(x => x.Ticket_Duration)</td>
+        <td></td>
+    </tr>
+    @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(x => item.Ticket_Number)</td>
+                    <td>@Html.DisplayFor(x => item.Unit_Number)</td>
+                    <td>@Html.DisplayFor(x => item.Vehicle_Reg)</td>
+                    <td>@Html.DisplayFor(x => item.Start_Time)</td>
+                    <td>@Html.DisplayFor(x => item.End_Time)</td>
+                    <td>@Html.DisplayFor(x => item.Ticket_Duration)</td>
+                </tr>
+            }
+</table>

@@ -1,0 +1,95 @@
+﻿@model perfumeApp.Models.Ticket
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.DisplayNameFor(x => x.Unit_Number)
+    { if (ViewBag.units == null) { ViewBag.units = new SelectList(new perfumeApp.Models.ParkingAppEntities().ParkingUnits, "Unit_Number", "Unit_Number"); } }
+    @Html.DropDownListFor(x => x.Unit_Number, (SelectList)ViewBag.units, "select", new { @class = "form-control" })
+    @Html.DisplayNameFor(x => x.Ticket_Duration)
+    @Html.EditorFor(x => x.Ticket_Duration)
+    @Html.DisplayNameFor(x => x.Start_Time)
+    <input type="date" id="Start_Time" name="Start_Time" />
+    @Html.DisplayNameFor(x => x.End_Time)
+    <input type="date" name="End_Time" id="End_Time" />
+    @Html.DisplayNameFor(x => x.cost)
+    @Html.EditorFor(x => x.cost)
+    @Html.DisplayNameFor(x => x.Vehicle_Reg)
+    @Html.EditorFor(x => x.Vehicle_Reg)
+
+    <input type="submit" value="submit" />
+}
+
+
+
+@section scripts{
+<script>
+    const body = document.querySelector("body");
+    const cost = document.querySelector("#cost");
+    const start = document.querySelector("#Start_Time");
+    const end = document.querySelector("#End_Time");
+    let startTime;
+    let endTime;
+
+    const calcCost = () => {
+        if (startTime && endTime) {
+            if (endTime > startTime) {
+                let m = endTime.getMonth() - startTime.getMonth();
+                let d = endTime.getDate() - startTime.getDate();
+                let date = new Date(endTime - startTime).getDate();
+                console.log(date)
+                cost.value = date;
+            }
+        }
+    }
+
+    body.addEventListener("mouseover", calcCost)
+
+    start.addEventListener("click", () => {
+        if (start.value != false) {
+            console.log(new Date(start.value))
+            startTime = new Date(start.value)
+            calcCost()
+        } 
+    })
+
+    start.addEventListener("mousein", () => {
+        if (start.value != false) {
+            console.log(new Date(start.value))
+            startTime = new Date(start.value)
+            calcCost()
+        }
+    })
+
+    start.addEventListener("mouseout", () => {
+        if (start.value != false) {
+            console.log(new Date(start.value))
+            startTime = new Date(start.value)
+            calcCost()
+        } 
+    })
+
+    end.addEventListener("click", () => {
+        if (end.value != false) {
+            console.log(new Date(end.value))
+            endTime = new Date(end.value)
+            calcCost()
+        }
+    })
+
+    end.addEventListener("mouseout", () => {
+        if (end.value != false) {
+            console.log(new Date(end.value))
+            endTime = new Date(end.value)
+            calcCost();
+        } 
+    })
+
+    cost.addEventListener("click", calcCost)
+
+</script>    
+
+}

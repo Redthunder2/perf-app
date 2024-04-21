@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Userslist";
+}
+
+<h2>Userslist</h2>
+
+@{ 
+    perfumeApp.Models.ApplicationDbContext context = new perfumeApp.Models.ApplicationDbContext();
+    var userslist = context.Users.ToList();
+
+    foreach(var u in userslist)
+            {
+                <p>@u.Email</p>
+                
+            }
+}

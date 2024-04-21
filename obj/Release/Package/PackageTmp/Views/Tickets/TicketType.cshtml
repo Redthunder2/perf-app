@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "TicketType";
+}
+
+<h2>TicketType</h2>
+
+<div>
+    <h4>Short Ticket</h4>
+    <p>
+        A short ticket is a ticket that has a duration of less than 24 hours.
+    </p>
+    @Html.ActionLink("Short", "shortTicketCreate", "Tickets", new { @area = "" }, new { @class = "btn btn-primary" })
+</div>
+<div class="rounded p-2">
+    <h4>Extended Ticket</h4>
+    <p>
+        An extended ticket is a ticket that has a duration of more than 24 hours.
+    </p>
+    @Html.ActionLink("Extended", "longTicket", "Ticket", new { @area = "" }, new { @class = "btn btn-primary" })
+</div>

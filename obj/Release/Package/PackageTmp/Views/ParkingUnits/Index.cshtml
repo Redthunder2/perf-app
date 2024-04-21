@@ -1,0 +1,28 @@
+﻿@model IEnumerable<perfumeApp.Models.ParkingUnit>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Units</h3>
+
+@Html.ActionLink("Create", "Create", new { @area = "" }, new { @class = "btn btn-primary px-3   " })
+<table class="table table-striped">
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Unit_Number)</td>
+        <td>@Html.DisplayNameFor(m => m.Avalilability)</td>
+        <td>@Html.DisplayNameFor(m => m.Tickets)</td>
+        <td>@Html.DisplayNameFor(m => m.ParkingSpace_Name)</td>
+    </tr>
+    
+        @{ foreach (var item in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(x => item.Unit_Number)</td>
+                <td>@Html.DisplayFor(x => item.Avalilability)</td>
+                <td>@Html.DisplayFor(x => item.Tickets)</td>
+                <td>@Html.DisplayFor(x => item.ParkingSpace_Name)</td>
+            </tr>
+            }
+         }
+        
+    </table>
