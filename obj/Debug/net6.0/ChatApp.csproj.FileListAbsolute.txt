@@ -1,0 +1,8 @@
+/workspace/obj/Debug/net6.0/ChatApp.csproj.AssemblyReference.cache
+/workspace/obj/Debug/net6.0/ChatApp.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/obj/Debug/net6.0/ChatApp.AssemblyInfoInputs.cache
+/workspace/obj/Debug/net6.0/ChatApp.AssemblyInfo.cs
+/workspace/obj/Debug/net6.0/ChatApp.csproj.CoreCompileInputs.cache
+/workspace/obj/Debug/net6.0/ChatApp.MvcApplicationPartsAssemblyInfo.cache
+/workspace/obj/Debug/net6.0/ChatApp.RazorAssemblyInfo.cache
+/workspace/obj/Debug/net6.0/ChatApp.RazorAssemblyInfo.cs
